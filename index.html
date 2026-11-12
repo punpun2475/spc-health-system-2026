@@ -3,28 +3,267 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ระบบบันทึกและประเมินภาวะการเจริญเติบโตของนักเรียน (งานอนามัย) - โรงเรียนเซนต์ปอลคอนแวนต์</title>
+  <title><title>ระบบบันทึกและประเมินภาวะการเจริญเติบโตของนักเรียน (งานอนามัย) - โรงเรียนเซนต์ปอลคอนแวนต์</title></title>
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Sarabun -->
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- SweetAlert2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <style>
     body { font-family: 'Sarabun', sans-serif; }
     input[type=number]::-webkit-inner-spin-button, 
-    input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
-    input[type=number] { -moz-appearance: textfield; }
+    input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; 
+      margin: 0; 
+    }
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
   </style>
 </head>
-<!-- ... (ส่วน HEADER และ โครงสร้าง HTML เหมือนเดิมทุกประการ) ... -->
+<body class="bg-slate-50 min-h-screen text-slate-800 flex flex-col justify-between">
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="bg-gradient-to-r from-blue-900 via-indigo-900 to-blue-950 text-white shadow-md border-b-4 border-amber-400">
+    <div class="max-w-6xl mx-auto px-4 py-4 sm:py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+      
+      <div class="flex items-center gap-4 text-center sm:text-left">
+        <img 
+          src="https://github.com/punpun2475/picture/blob/main/ST%20(3).PNG?raw=true" 
+          alt="ตราโรงเรียนเซนต์ปอลคอนแวนต์" 
+          class="h-16 w-auto object-contain drop-shadow-md bg-white/10 p-1 rounded-xl"
+        >
+        <div>
+          <div class="flex items-center justify-center sm:justify-start gap-2">
+            <span class="px-2 py-0.5 text-xs font-semibold bg-emerald-500 text-white rounded-md tracking-wider">HEALTH SYSTEM</span>
+            <span class="text-xs text-blue-200">ประจำปีการศึกษา 2569</span>
+          </div>
+          <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-white mt-0.5">
+            ระบบบันทึกและประเมินภาวะโภชนาการนักเรียน
+          </h1>
+          <p class="text-xs sm:text-sm text-blue-100/80">
+            โรงเรียนเซนต์ปอลคอนแวนต์ • งานอนามัยโรงเรียน
+          </p>
+        </div>
+      </div>
+
+      <div class="hidden md:flex flex-col items-end">
+        <span class="text-xs text-blue-200">ส่งต่อข้อมูลสุขภาพโรงพยาบาล</span>
+        <span class="text-sm font-semibold text-amber-300">เกณฑ์มาตรฐานกรมอนามัย (เพศหญิง 6–19 ปี)</span>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="max-w-6xl mx-auto px-4 py-6 w-full flex-grow space-y-5">
+    
+    <!-- แถบควบคุม: เลือกระดับชั้นและห้องเรียน -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 sm:p-5 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3 w-full md:w-auto">
+        <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-900 flex items-center justify-center font-bold text-lg shrink-0">
+          🏫
+        </div>
+        <div class="w-full">
+          <label class="block text-xs font-bold text-slate-500 uppercase">เลือกระดับชั้นและห้องเรียน</label>
+          <select id="classSelector" onchange="loadStudentData()" class="mt-0.5 text-base sm:text-lg font-bold text-blue-950 bg-slate-50 border-2 border-blue-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent cursor-pointer w-full md:w-80">
+            <option value="">-- กรุณาเลือกห้องเรียน --</option>
+            
+            <optgroup label="ประถมศึกษาปีที่ 1">
+              <option value="ป.1|1">ประถมศึกษาปีที่ 1/1</option>
+              <option value="ป.1|2">Primary G 1A</option>
+              <option value="ป.1|3">Primary G 1B</option>
+            </optgroup>
+
+            <optgroup label="ประถมศึกษาปีที่ 2">
+              <option value="ป.2|1">ประถมศึกษาปีที่ 2/1</option>
+              <option value="ป.2|2">Primary G 2A</option>
+              <option value="ป.2|3">Primary G 2B</option>
+            </optgroup>
+
+            <optgroup label="ประถมศึกษาปีที่ 3">
+              <option value="ป.3|1">ประถมศึกษาปีที่ 3/1</option>
+              <option value="ป.3|2">ประถมศึกษาปีที่ 3/2</option>
+              <option value="ป.3|3">Primary G 3A</option>
+              <option value="ป.3|4">Primary G 3B</option>
+            </optgroup>
+
+            <optgroup label="ประถมศึกษาปีที่ 4">
+              <option value="ป.4|1">ประถมศึกษาปีที่ 4/1</option>
+              <option value="ป.4|2">ประถมศึกษาปีที่ 4/2</option>
+              <option value="ป.4|3">Primary G 4A</option>
+              <option value="ป.4|4">Primary G 4B</option>
+            </optgroup>
+
+            <optgroup label="ประถมศึกษาปีที่ 5">
+              <option value="ป.5|1">ประถมศึกษาปีที่ 5/1</option>
+              <option value="ป.5|2">ประถมศึกษาปีที่ 5/2</option>
+              <option value="ป.5|3">Primary G 5A</option>
+              <option value="ป.5|4">Primary G 5B</option>
+            </optgroup>
+
+            <optgroup label="ประถมศึกษาปีที่ 6">
+              <option value="ป.6|1">ประถมศึกษาปีที่ 6/1</option>
+              <option value="ป.6|2">ประถมศึกษาปีที่ 6/2</option>
+              <option value="ป.6|3">Primary G6</option>
+            </optgroup>
+
+            <optgroup label="มัธยมศึกษาปีที่ 1">
+              <option value="ม.1|1">มัธยมศึกษาปีที่ 1/1</option>
+              <option value="ม.1|2">Secondary G7</option>
+            </optgroup>
+
+            <optgroup label="มัธยมศึกษาปีที่ 2">
+              <option value="ม.2|1">มัธยมศึกษาปีที่ 2/1</option>
+              <option value="ม.2|2">มัธยมศึกษาปีที่ 2/2</option>
+              <option value="ม.2|3">Secondary G8</option>
+            </optgroup>
+
+            <optgroup label="มัธยมศึกษาปีที่ 3">
+              <option value="ม.3|1">มัธยมศึกษาปีที่ 3/1</option>
+              <option value="ม.3|2">มัธยมศึกษาปีที่ 3/2</option>
+              <option value="ม.3|3">Secondary G9</option>
+            </optgroup>
+
+            <optgroup label="มัธยมศึกษาตอนปลาย">
+              <option value="ม.4|1">มัธยมศึกษาปีที่ 4/1</option>
+              <option value="ม.4|2">มัธยมศึกษาปีที่ 4/2</option>
+              <option value="ม.5|1">มัธยมศึกษาปีที่ 5/1</option>
+              <option value="ม.5|2">มัธยมศึกษาปีที่ 5/2</option>
+              <option value="ม.6|1">มัธยมศึกษาปีที่ 6/1</option>
+              <option value="ม.6|2">มัธยมศึกษาปีที่ 6/2</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
+
+      <!-- ปุ่มบันทึกข้อมูลหลัก -->
+      <div class="flex items-center gap-3 w-full md:w-auto justify-end">
+        <button type="button" onclick="saveData()" class="w-full md:w-auto px-7 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow hover:shadow-lg transition flex items-center justify-center gap-2 text-base">
+          💾 บันทึกข้อมูลภาคเรียนที่ 2
+        </button>
+      </div>
+    </div>
+
+    <!-- ข้อมูลห้องเรียนและครูประจำชั้น -->
+    <div id="classroomInfoBox" class="hidden bg-blue-50/80 border-l-4 border-blue-600 p-4 rounded-r-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+      <div>
+        <span class="text-xs font-bold text-blue-600 uppercase">ข้อมูลห้องเรียน</span>
+        <h2 id="classroomInfoText" class="text-base font-bold text-blue-950">-</h2>
+      </div>
+      <div class="flex items-center gap-2 font-medium text-xs text-slate-600 bg-white px-3 py-1.5 rounded-lg border border-blue-200">
+        <span>คำแนะนำ: พิมพ์ นน. และ สส. ระบบจะแปลผลตามเกณฑ์กรมอนามัย 6 ระดับทันที</span>
+      </div>
+    </div>
+
+    <!-- แถบอธิบายสัญลักษณ์สี -->
+    <div class="bg-amber-50/70 border border-amber-200/80 rounded-xl p-3 text-xs sm:text-sm text-amber-900 flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="text-base">📌</span>
+        <span>ช่องสีส้ม = ฐานข้อมูลเทอม 1 (อ้างอิง) | ช่องสีเขียว = กรอกข้อมูลเทอม 2</span>
+      </div>
+      <div class="flex items-center gap-2 font-semibold flex-wrap">
+        <span class="px-2 py-0.5 bg-rose-100 text-rose-800 rounded border border-rose-300">อ้วน (>+3 SD)</span>
+        <span class="px-2 py-0.5 bg-amber-100 text-amber-800 rounded border border-amber-300">เริ่มอ้วน (+2 ถึง +3 SD)</span>
+        <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded border border-emerald-300">ท้วม (+1.5 ถึง +2 SD)</span>
+        <span class="px-2 py-0.5 bg-green-100 text-green-800 rounded border border-green-300">สมส่วน (-1.5 ถึง +1.5 SD)</span>
+        <span class="px-2 py-0.5 bg-yellow-100 text-yellow-800 rounded border border-yellow-300">ค่อนข้างผอม (-2 ถึง -1.5 SD)</span>
+        <span class="px-2 py-0.5 bg-sky-100 text-sky-800 rounded border border-sky-300">ผอม (&lt;-2 SD)</span>
+      </div>
+    </div>
+
+    <!-- ตารางบันทึกข้อมูล -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-slate-100/80 text-slate-700 border-b border-slate-200 text-center font-bold text-sm">
+              <th rowspan="2" class="p-3 w-16 border-r border-slate-200">เลขที่</th>
+              <th rowspan="2" class="p-3 text-left min-w-[220px] border-r border-slate-200">ชื่อ - สกุล นักเรียน</th>
+              <th colspan="3" class="p-2 bg-amber-100/50 text-amber-900 border-r border-slate-200 text-xs sm:text-sm">ฐานข้อมูลเดิม (ภาคเรียนที่ 1)</th>
+              <th colspan="3" class="p-2 bg-emerald-100/50 text-emerald-900 text-xs sm:text-sm">กรอกข้อมูล (ภาคเรียนที่ 2)</th>
+            </tr>
+            <tr class="bg-slate-50 text-xs text-slate-600 border-b border-slate-200 text-center font-semibold">
+              <th class="p-2 bg-amber-50/40 w-24">นน. (กก.)</th>
+              <th class="p-2 bg-amber-50/40 w-24">สส. (ซม.)</th>
+              <th class="p-2 bg-amber-50/40 w-28 border-r border-slate-200">ผลเทอม 1</th>
+              <th class="p-2 bg-emerald-50/40 w-28">นน. (กก.)</th>
+              <th class="p-2 bg-emerald-50/40 w-28">สส. (ซม.)</th>
+              <th class="p-2 bg-emerald-50/40 min-w-[140px]">แปลผล (อัตโนมัติ)</th>
+            </tr>
+          </thead>
+          <tbody id="studentTableBody" class="divide-y divide-slate-100 text-sm sm:text-base">
+            <tr>
+              <td colspan="8" class="text-center py-16 text-slate-400">
+                👆 กรุณาเลือกห้องเรียนด้านบน เพื่อเริ่มกรอกข้อมูล
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ปุ่มบันทึกข้อมูลล่าง -->
+    <div class="flex justify-end p-2">
+      <button type="button" onclick="saveData()" class="w-full sm:w-auto px-8 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-base rounded-2xl shadow-lg transition flex items-center justify-center gap-2">
+        💾 บันทึกข้อมูลทั้งหมดลง Sheet
+      </button>
+    </div>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="mt-12 bg-white border-t border-slate-200 text-slate-600">
+    <div class="max-w-6xl mx-auto px-4 py-6">
+      
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4 pb-4 border-b border-slate-100 text-center md:text-left">
+        <div class="flex items-center gap-3">
+          <img 
+            src="https://github.com/punpun2475/picture/blob/main/ST%20(3).PNG?raw=true" 
+            alt="SPC Logo" 
+            class="h-10 w-auto object-contain opacity-90"
+          >
+          <div>
+            <h3 class="text-sm font-bold text-blue-950">
+              งานอนามัยโรงเรียน โรงเรียนเซนต์ปอลคอนแวนต์
+            </h3>
+            <p class="text-xs text-slate-500">
+              ระบบประเมินการเจริญเติบโตและภาวะโภชนาการนักเรียนหญิงตามเกณฑ์มาตรฐาน สธ. (6 ช่วงอายุ 6 - 19 ปี)
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full text-xs font-semibold">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>GitHub Pages Connected to GAS</span>
+        </div>
+      </div>
+
+      <div class="pt-4 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-slate-500 text-center sm:text-left">
+        <div>
+          © 2026 โรงเรียนเซนต์ปอลคอนแวนต์ (St. Paul Convent School). All rights reserved.
+        </div>
+        
+        <div class="flex items-center gap-1.5 font-medium bg-slate-50 px-3 py-1 rounded-md border border-slate-200">
+          <span class="text-slate-400">ลิขสิทธิ์คนพัฒนา:</span>
+          <span class="text-blue-900 font-semibold tracking-wide">POMMY@St.Paul</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
 
   <!-- ==================== JAVASCRIPT ==================== -->
   <script>
-    // 🔴 🔴 เปลี่ยน URL ตรงนี้เป็น URL เว็บแอปที่ได้จากการ Deploy ใหม่ของคุณครู 🔴 🔴
+    // 🔴 🔴 คุณครูต้องเอา URL เว็บแอปจาก Apps Script มาใส่ตรงนี้ค่ะ 🔴 🔴
     const GAS_API_URL = "https://script.google.com/macros/s/AKfycbzyIsnbrW0f_umjKqAUZuPNciqK_cyDRznRn6qloPDqOX9uTrckHFd08Eci6H7s6m_WFg/exec"; 
 
     var currentStudents = [];
     var currentSheet = '';
 
-    // ฟังก์ชันโหลดข้อมูลห้องเรียน (เปลี่ยนมาใช้ Fetch API แทน google.script.run)
+    // ฟังก์ชันโหลดข้อมูลห้องเรียน (ใช้ Fetch API เพื่อเชื่อมผ่าน GitHub)
     function loadStudentData() {
       var val = document.getElementById('classSelector').value;
       if (!val) {
@@ -37,6 +276,11 @@
       currentSheet = parts[0];
       var sectionIndex = parseInt(parts[1], 10);
 
+      if (GAS_API_URL === "https://script.google.com/macros/s/AKfycbzyIsnbrW0f_umjKqAUZuPNciqK_cyDRznRn6qloPDqOX9uTrckHFd08Eci6H7s6m_WFg/exec") {
+        Swal.fire('ข้อผิดพลาด', 'คุณครูยังไม่ได้ใส่ URL ของ Web App ในโค้ดบรรทัดที่ 261 ค่ะ', 'error');
+        return;
+      }
+
       Swal.fire({
         title: 'กำลังดึงข้อมูล...',
         text: 'กรุณารอสักครู่ กำลังเตรียมรายชื่อนักเรียน',
@@ -44,7 +288,6 @@
         didOpen: () => { Swal.showLoading(); }
       });
 
-      // ใช้ Fetch เรียก API แทน
       fetch(`${GAS_API_URL}?action=getStudents&sheetName=${encodeURIComponent(currentSheet)}&sectionIndex=${sectionIndex}`)
         .then(response => response.json())
         .then(res => {
@@ -63,9 +306,113 @@
         });
     }
 
-    // ... (ส่วน renderTable, handleInput, evaluateHealthFemale, getBadge เหมือนเดิม) ...
+    // ฟังก์ชันแสดงตาราง
+    function renderTable() {
+      var tbody = document.getElementById('studentTableBody');
+      if (currentStudents.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="8" class="text-center py-12 text-slate-400">ไม่พบรายชื่อในห้องเรียนนี้</td></tr>';
+        return;
+      }
 
-    // สั่งบันทึกลง Google Sheet (เปลี่ยนมาใช้ Fetch POST)
+      var html = '';
+      currentStudents.forEach(function(stu, idx) {
+        html += '<tr class="hover:bg-slate-50 transition border-b border-slate-100">' +
+          '<td class="p-3 text-center font-bold text-slate-600 border-r border-slate-100">' + stu.no + '</td>' +
+          '<td class="p-3 font-semibold text-slate-800 border-r border-slate-100">' + 
+            stu.name + 
+            '<div class="text-xs text-slate-400 font-normal">รหัส: ' + stu.studentCode + '</div>' +
+          '</td>' +
+          '<td class="p-3 text-center bg-amber-50/20 text-slate-700 font-medium">' + stu.weightT1 + '</td>' +
+          '<td class="p-3 text-center bg-amber-50/20 text-slate-700 font-medium">' + stu.heightT1 + '</td>' +
+          '<td class="p-3 text-center bg-amber-50/20 border-r border-slate-100">' + getBadge(stu.resultT1) + '</td>' +
+          '<td class="p-2 text-center bg-emerald-50/20">' +
+            '<input type="number" step="0.1" value="' + (stu.weightT2 !== '' ? stu.weightT2 : '') + '" oninput="handleInput(' + idx + ', \'weight\', this.value)" placeholder="กก." class="w-20 text-center font-bold text-slate-800 border-2 border-emerald-300 rounded-lg p-2 focus:ring-2 focus:ring-emerald-500 focus:outline-none bg-white">' +
+          '</td>' +
+          '<td class="p-2 text-center bg-emerald-50/20">' +
+            '<input type="number" step="0.5" value="' + (stu.heightT2 !== '' ? stu.heightT2 : '') + '" oninput="handleInput(' + idx + ', \'height\', this.value)" placeholder="ซม." class="w-20 text-center font-bold text-slate-800 border-2 border-emerald-300 rounded-lg p-2 focus:ring-2 focus:ring-emerald-500 focus:outline-none bg-white">' +
+          '</td>' +
+          '<td class="p-2 text-center bg-emerald-50/20" id="badge-t2-' + idx + '">' +
+            getBadge(stu.resultT2) +
+          '</td>' +
+        '</tr>';
+      });
+
+      tbody.innerHTML = html;
+    }
+
+    // คำนวณแปลผลทันทีเมื่อพิมพ์
+    function handleInput(index, field, val) {
+      if (field === 'weight') currentStudents[index].weightT2 = val;
+      if (field === 'height') currentStudents[index].heightT2 = val;
+
+      var w = parseFloat(currentStudents[index].weightT2);
+      var h = parseFloat(currentStudents[index].heightT2);
+
+      if (w > 0 && h > 0) {
+        var res = evaluateHealthFemale(w, h);
+        currentStudents[index].resultT2 = res;
+      } else {
+        currentStudents[index].resultT2 = '';
+      }
+
+      document.getElementById('badge-t2-' + index).innerHTML = getBadge(currentStudents[index].resultT2);
+    }
+
+    // แปลผล 6 ช่วง ตามกราฟน้ำหนักตามเกณฑ์ส่วนสูง เด็กหญิง 6-19 ปี (กรมอนามัย พ.ศ. 2564)
+    function evaluateHealthFemale(weight, height) {
+      var w = parseFloat(weight);
+      var h = Math.round(parseFloat(height));
+      if (!w || !h || h < 90 || h > 175) return '';
+
+      var lookupTable = {
+        90:  [9.8,  10.3, 13.8, 15.0, 17.5],
+        95:  [11.0, 11.5, 15.5, 16.8, 19.8],
+        100: [12.2, 12.8, 17.3, 18.8, 22.0],
+        105: [13.5, 14.1, 19.3, 21.0, 24.6],
+        110: [14.8, 15.6, 21.4, 23.4, 27.6],
+        115: [16.4, 17.2, 23.8, 26.0, 30.8],
+        120: [18.1, 19.0, 26.5, 29.0, 34.4],
+        125: [20.0, 21.0, 29.5, 32.2, 38.6],
+        130: [22.1, 23.2, 32.8, 35.8, 43.1],
+        135: [24.4, 25.6, 36.5, 40.0, 48.2],
+        140: [27.0, 28.3, 40.6, 44.5, 54.0],
+        145: [29.8, 31.3, 45.1, 49.5, 60.5],
+        150: [32.8, 34.5, 50.1, 55.0, 67.5],
+        155: [35.8, 37.6, 54.8, 60.2, 73.5],
+        160: [38.5, 40.5, 59.2, 65.0, 78.8],
+        165: [40.8, 42.9, 62.9, 69.1, 83.2],
+        170: [42.6, 44.8, 65.9, 72.4, 86.8],
+        175: [44.0, 46.2, 68.0, 74.8, 89.2]
+      };
+
+      var keys = Object.keys(lookupTable).map(Number).sort(function(a, b){return a - b;});
+      var targetH = keys[0];
+      for (var i = 0; i < keys.length; i++) {
+        if (h >= keys[i]) targetH = keys[i];
+      }
+
+      var cutoffs = lookupTable[targetH];
+
+      if (w < cutoffs[0]) return 'ผอม';
+      if (w < cutoffs[1]) return 'ค่อนข้างผอม';
+      if (w <= cutoffs[2]) return 'สมส่วน';
+      if (w <= cutoffs[3]) return 'ท้วม';
+      if (w <= cutoffs[4]) return 'เริ่มอ้วน';
+      return 'อ้วน';
+    }
+
+    function getBadge(status) {
+      if (!status || status === '-') return '<span class="text-slate-400 font-normal">-</span>';
+      if (status === 'สมส่วน') return '<span class="px-2.5 py-1 bg-green-100 text-green-800 rounded-md font-bold text-xs border border-green-300">สมส่วน</span>';
+      if (status === 'ท้วม') return '<span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-md font-bold text-xs border border-emerald-300">ท้วม</span>';
+      if (status === 'เริ่มอ้วน') return '<span class="px-2.5 py-1 bg-amber-100 text-amber-800 rounded-md font-bold text-xs border border-amber-300">เริ่มอ้วน</span>';
+      if (status === 'อ้วน') return '<span class="px-2.5 py-1 bg-rose-100 text-rose-800 rounded-md font-bold text-xs border border-rose-300">อ้วน</span>';
+      if (status === 'ค่อนข้างผอม') return '<span class="px-2.5 py-1 bg-yellow-100 text-yellow-800 rounded-md font-bold text-xs border border-yellow-300">ค่อนข้างผอม</span>';
+      if (status === 'ผอม') return '<span class="px-2.5 py-1 bg-sky-100 text-sky-800 rounded-md font-bold text-xs border border-sky-300">ผอม</span>';
+      return '<span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded text-xs font-semibold">' + status + '</span>';
+    }
+
+    // สั่งบันทึกลง Google Sheet (ใช้ Fetch POST เชื่อมผ่าน GitHub)
     function saveData() {
       if (!currentSheet || currentStudents.length === 0) {
         Swal.fire('แจ้งเตือน', 'กรุณาเลือกห้องเรียนก่อนทำการบันทึก', 'warning');
@@ -90,7 +437,6 @@
             didOpen: () => { Swal.showLoading(); }
           });
 
-          // ส่งข้อมูลเป็น JSON ผ่าน POST Request
           fetch(GAS_API_URL, {
             method: 'POST',
             body: JSON.stringify({
