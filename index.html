@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><title>ระบบบันทึกและประเมินภาวะการเจริญเติบโตของนักเรียน (งานอนามัย) - โรงเรียนเซนต์ปอลคอนแวนต์</title></title>
+  <title>ระบบบันทึกและประเมินภาวะโภชนาการนักเรียน (งานอนามัย)</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts: Sarabun -->
@@ -76,57 +76,48 @@
               <option value="ป.1|2">Primary G 1A</option>
               <option value="ป.1|3">Primary G 1B</option>
             </optgroup>
-
             <optgroup label="ประถมศึกษาปีที่ 2">
               <option value="ป.2|1">ประถมศึกษาปีที่ 2/1</option>
               <option value="ป.2|2">Primary G 2A</option>
               <option value="ป.2|3">Primary G 2B</option>
             </optgroup>
-
             <optgroup label="ประถมศึกษาปีที่ 3">
               <option value="ป.3|1">ประถมศึกษาปีที่ 3/1</option>
               <option value="ป.3|2">ประถมศึกษาปีที่ 3/2</option>
               <option value="ป.3|3">Primary G 3A</option>
               <option value="ป.3|4">Primary G 3B</option>
             </optgroup>
-
             <optgroup label="ประถมศึกษาปีที่ 4">
               <option value="ป.4|1">ประถมศึกษาปีที่ 4/1</option>
               <option value="ป.4|2">ประถมศึกษาปีที่ 4/2</option>
               <option value="ป.4|3">Primary G 4A</option>
               <option value="ป.4|4">Primary G 4B</option>
             </optgroup>
-
             <optgroup label="ประถมศึกษาปีที่ 5">
               <option value="ป.5|1">ประถมศึกษาปีที่ 5/1</option>
               <option value="ป.5|2">ประถมศึกษาปีที่ 5/2</option>
               <option value="ป.5|3">Primary G 5A</option>
               <option value="ป.5|4">Primary G 5B</option>
             </optgroup>
-
             <optgroup label="ประถมศึกษาปีที่ 6">
               <option value="ป.6|1">ประถมศึกษาปีที่ 6/1</option>
               <option value="ป.6|2">ประถมศึกษาปีที่ 6/2</option>
               <option value="ป.6|3">Primary G6</option>
             </optgroup>
-
             <optgroup label="มัธยมศึกษาปีที่ 1">
               <option value="ม.1|1">มัธยมศึกษาปีที่ 1/1</option>
               <option value="ม.1|2">Secondary G7</option>
             </optgroup>
-
             <optgroup label="มัธยมศึกษาปีที่ 2">
               <option value="ม.2|1">มัธยมศึกษาปีที่ 2/1</option>
               <option value="ม.2|2">มัธยมศึกษาปีที่ 2/2</option>
               <option value="ม.2|3">Secondary G8</option>
             </optgroup>
-
             <optgroup label="มัธยมศึกษาปีที่ 3">
               <option value="ม.3|1">มัธยมศึกษาปีที่ 3/1</option>
               <option value="ม.3|2">มัธยมศึกษาปีที่ 3/2</option>
               <option value="ม.3|3">Secondary G9</option>
             </optgroup>
-
             <optgroup label="มัธยมศึกษาตอนปลาย">
               <option value="ม.4|1">มัธยมศึกษาปีที่ 4/1</option>
               <option value="ม.4|2">มัธยมศึกษาปีที่ 4/2</option>
@@ -158,7 +149,7 @@
       </div>
     </div>
 
-    <!-- แถบอธิบายสัญลักษณ์สี -->
+    <!-- แถบอธิบายสัญลักษณ์สี 6 ช่วง (ผอม / ค่อนข้างผอม / สมส่วน / ท้วม / เริ่มอ้วน / อ้วน) ตามกราฟ สธ. -->
     <div class="bg-amber-50/70 border border-amber-200/80 rounded-xl p-3 text-xs sm:text-sm text-amber-900 flex flex-wrap items-center justify-between gap-2">
       <div class="flex items-center gap-2">
         <span class="text-base">📌</span>
@@ -237,7 +228,7 @@
 
         <div class="flex items-center gap-2 px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full text-xs font-semibold">
           <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span>GitHub Pages Connected to GAS</span>
+          <span>Connected to Google Apps Script API</span>
         </div>
       </div>
 
@@ -257,13 +248,13 @@
 
   <!-- ==================== JAVASCRIPT ==================== -->
   <script>
-    // 🔴 🔴 คุณครูต้องเอา URL เว็บแอปจาก Apps Script มาใส่ตรงนี้ค่ะ 🔴 🔴
+    // 🔴🔴🔴🔴 ใส่ URL ตรงบรรทัดนี้ค่ะ 🔴🔴🔴🔴
     const GAS_API_URL = "https://script.google.com/macros/s/AKfycbzyIsnbrW0f_umjKqAUZuPNciqK_cyDRznRn6qloPDqOX9uTrckHFd08Eci6H7s6m_WFg/exec"; 
+    // 🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴
 
     var currentStudents = [];
     var currentSheet = '';
 
-    // ฟังก์ชันโหลดข้อมูลห้องเรียน (ใช้ Fetch API เพื่อเชื่อมผ่าน GitHub)
     function loadStudentData() {
       var val = document.getElementById('classSelector').value;
       if (!val) {
@@ -276,8 +267,9 @@
       currentSheet = parts[0];
       var sectionIndex = parseInt(parts[1], 10);
 
-      if (GAS_API_URL === "https://script.google.com/macros/s/AKfycbzyIsnbrW0f_umjKqAUZuPNciqK_cyDRznRn6qloPDqOX9uTrckHFd08Eci6H7s6m_WFg/exec") {
-        Swal.fire('ข้อผิดพลาด', 'คุณครูยังไม่ได้ใส่ URL ของ Web App ในโค้ดบรรทัดที่ 261 ค่ะ', 'error');
+      // เช็คว่าลืมใส่ URL หรือเปล่า
+      if (GAS_API_URL.includes("https://script.google.com/macros/s/AKfycbzyIsnbrW0f_umjKqAUZuPNciqK_cyDRznRn6qloPDqOX9uTrckHFd08Eci6H7s6m_WFg/exec")) {
+        Swal.fire('ข้อผิดพลาด', 'คุณครูยังไม่ได้ใส่ URL ของ Web App ลงในโค้ดบรรทัดที่ 261 ค่ะ (ในไฟล์ของ GitHub)', 'error');
         return;
       }
 
@@ -288,6 +280,7 @@
         didOpen: () => { Swal.showLoading(); }
       });
 
+      // ใช้งานผ่าน Fetch API เพื่อคุยข้ามไปยัง Google
       fetch(`${GAS_API_URL}?action=getStudents&sheetName=${encodeURIComponent(currentSheet)}&sectionIndex=${sectionIndex}`)
         .then(response => response.json())
         .then(res => {
@@ -306,7 +299,6 @@
         });
     }
 
-    // ฟังก์ชันแสดงตาราง
     function renderTable() {
       var tbody = document.getElementById('studentTableBody');
       if (currentStudents.length === 0) {
@@ -340,7 +332,6 @@
       tbody.innerHTML = html;
     }
 
-    // คำนวณแปลผลทันทีเมื่อพิมพ์
     function handleInput(index, field, val) {
       if (field === 'weight') currentStudents[index].weightT2 = val;
       if (field === 'height') currentStudents[index].heightT2 = val;
@@ -358,7 +349,6 @@
       document.getElementById('badge-t2-' + index).innerHTML = getBadge(currentStudents[index].resultT2);
     }
 
-    // แปลผล 6 ช่วง ตามกราฟน้ำหนักตามเกณฑ์ส่วนสูง เด็กหญิง 6-19 ปี (กรมอนามัย พ.ศ. 2564)
     function evaluateHealthFemale(weight, height) {
       var w = parseFloat(weight);
       var h = Math.round(parseFloat(height));
@@ -412,7 +402,7 @@
       return '<span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded text-xs font-semibold">' + status + '</span>';
     }
 
-    // สั่งบันทึกลง Google Sheet (ใช้ Fetch POST เชื่อมผ่าน GitHub)
+    // สั่งบันทึกโดยใช้ Fetch POST เชื่อมไปที่ Google API
     function saveData() {
       if (!currentSheet || currentStudents.length === 0) {
         Swal.fire('แจ้งเตือน', 'กรุณาเลือกห้องเรียนก่อนทำการบันทึก', 'warning');
@@ -444,9 +434,7 @@
               sheetName: currentSheet,
               updates: currentStudents
             }),
-            headers: {
-              'Content-Type': 'text/plain;charset=utf-8', 
-            }
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' }
           })
           .then(response => response.json())
           .then(res => {
